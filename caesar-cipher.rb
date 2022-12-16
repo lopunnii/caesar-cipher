@@ -1,43 +1,39 @@
 def caesar_cipher(string, key)
 
-    alphabet = ["A", "a", "B", "b", "C", "c", "D", "d", "E", "e", "F", "f", "G", "g", "H", "h", "I", "i", "J", "j", "K", "k", "L", "l", "M", "m",
-        "N", "n", "O", "o", "P", "p", "Q", "q", "R", "r", "S", "s", "T", "t", "U", "u", "V", "v", "W", "w", "X", "x", "Y", "y", "Z", "z"]
+    alphabet = ["A", "a", "B", "b", "C", "c", "D", "d", "E", "e", "F", "f", "G", "g", 
+        "H", "h", "I", "i", "J", "j", "K", "k", "L", "l", "M", "m", "N", "n", "O", "o", 
+        "P", "p", "Q", "q", "R", "r", "S", "s", "T", "t", "U", "u", "V", "v", "W", "w", 
+        "X", "x", "Y", "y", "Z", "z"]
     
     if key > 25 || key < -25
         return puts "Please input a key that is between -25 and 25"
     end
-
-    arr = string.split(//)
-    p arr
     
-    arr2 = arr.map {|letter| 
+    #Split given string and transform the individual letters to their shifted index number
+    index_arr = string.split(//).map {|letter| 
         if letter =~ /[a-zA-Z]/
-        letter = alphabet.index(letter) + (key * 2)
+            letter = (alphabet.index(letter) + (key * 2)).to_s
         else
-        letter = letter
+            #Preserves the form of non-letters (spaces, symbols etc.)
+            letter = letter
         end
     }
-    p arr2
 
-    arr3 = arr2.map { |index|
-        index = index.to_s   
-    }
-    p arr3
-
-    arr4 = arr3.map { |index|
+    #Transform each index number back into a string (the new shifted character)
+    new_letter_arr = index_arr.map { |index|
         if index =~ /[0-9]/
             index = index.to_i
-            if index > 50
-                index -= 52
-            end
+                #Wrap from z to a
+                if index > 50
+                    index -= 52
+                end
             index = alphabet[index]
         else
+            #Preserves the form of non-letters (spaces, symbols etc.)
             index = index
         end
     }
-
-    p arr4
-    p arr4.join
+    p new_letter_arr.join
 end
 
 caesar_cipher("What a string!", 5)
