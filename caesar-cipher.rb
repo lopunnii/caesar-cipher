@@ -10,17 +10,17 @@ def caesar_cipher(string, key)
     end
     
     #Split given string and transform the individual letters to their shifted index number
-    index_arr = string.split(//).map {|letter| 
+    index_arr = string.split(//).map do |letter| 
         if letter =~ /[a-zA-Z]/
             letter = (alphabet.index(letter) + (key * 2)).to_s
         else
             #Preserves the form of non-letters (spaces, symbols etc.)
             letter = letter
         end
-    }
+    end
 
     #Transform each index number back into a string (the new shifted character)
-    new_letter_arr = index_arr.map { |index|
+    new_letter_arr = index_arr.map do |index|
         if index =~ /[0-9]/
             index = index.to_i
                 #Wrap from z to a
@@ -32,7 +32,7 @@ def caesar_cipher(string, key)
             #Preserves the form of non-letters (spaces, symbols etc.)
             index = index
         end
-    }
+    end
     p new_letter_arr.join
 end
 
