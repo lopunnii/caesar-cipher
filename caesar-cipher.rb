@@ -1,7 +1,7 @@
 def caesar_cipher(string, key)
 
-    alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
-        "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    alphabet = ["A", "a", "B", "b", "C", "c", "D", "d", "E", "e", "F", "f", "G", "g", "H", "h", "I", "i", "J", "j", "K", "k", "L", "l", "M", "m",
+        "N", "n", "O", "o", "P", "p", "Q", "q", "R", "r", "S", "s", "T", "t", "U", "u", "V", "v", "W", "w", "X", "x", "Y", "y", "Z", "z"]
     
     if key > 25 || key < -25
         return puts "Please input a key that is between -25 and 25"
@@ -12,7 +12,7 @@ def caesar_cipher(string, key)
     
     arr2 = arr.map {|letter| 
         if letter =~ /[a-zA-Z]/
-        letter = alphabet.index(letter) + key
+        letter = alphabet.index(letter) + (key * 2)
         else
         letter = letter
         end
@@ -27,8 +27,8 @@ def caesar_cipher(string, key)
     arr4 = arr3.map { |index|
         if index =~ /[0-9]/
             index = index.to_i
-            if index > 25
-                index -= 26
+            if index > 50
+                index -= 52
             end
             index = alphabet[index]
         else
@@ -37,7 +37,7 @@ def caesar_cipher(string, key)
     }
 
     p arr4
-    arr4.join
+    p arr4.join
 end
 
-p caesar_cipher("acc dee!", 5)
+caesar_cipher("What a string!", 5)
